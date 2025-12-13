@@ -204,7 +204,7 @@ export function MusicLikedSongs() {
               <span>{trackCount} songs • {likedTracks.length > 0 ? formatDuration(likedTracks) : '0m'}</span>
             </div>
             <p className="text-sm text-gray-400 mt-4 max-w-lg">
-              Only the music you like in ZapTrax will show here. If you want liked music from other sources, you can import it.
+              Only the music you like in 5DTOK Musik will show here. If you want liked music from other sources, you can import it.
             </p>
           </div>
 

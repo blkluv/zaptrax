@@ -1,4 +1,4 @@
-package app.zaptrax;
+package  app.musik;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
     private MediaPlaybackService mediaPlaybackService;
     private boolean serviceBound = false;
     private boolean hasRequestedNotificationPermission = false;
-    private static final String WEBSITE_URL = "https://zaptrax.app";
+    private static final String WEBSITE_URL = "https://musik.5dtok.com";
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -147,7 +147,7 @@ public class MainActivity extends Activity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
 
-                // Open external links (non-zaptrax.app domains) in browser
+                // Open external links (non-musik.app domains) in browser
                 if (!url.startsWith(WEBSITE_URL)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);

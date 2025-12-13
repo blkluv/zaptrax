@@ -16,7 +16,7 @@ export function useNostrPublish(): UseMutationResult<NostrEvent> {
 
         // Add the client tag if it doesn't exist
         if (!tags.some(([name]) => name === "client")) {
-          tags.push(["client", "ZapTrax"]);
+          tags.push(["client", "5DTOK Musik"]);
         }
 
         const event = await user.signer.signEvent({

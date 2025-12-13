@@ -1,11 +1,11 @@
 # Zaptrax Android App
 
-This is an Android WebView wrapper application for [https://zaptrax.app](https://zaptrax.app).
+This is an Android WebView wrapper application for [https://musik.5dtok.com](https://musik.5dtok.com).
 
 ## App Specifications
 
-- **Package Name**: `app.zaptrax`
-- **Website URL**: `https://zaptrax.app`
+- **Package Name**: ` app.musik`
+- **Website URL**: `https://musik.5dtok.com`
 - **Min SDK**: Android 7.0 (API 24)
 - **Target SDK**: Android 14 (API 34)
 - **Compile SDK**: API 34
@@ -18,7 +18,7 @@ This is an Android WebView wrapper application for [https://zaptrax.app](https:/
 - ✅ Back button navigation within WebView
 - ✅ Network connectivity checking
 - ✅ Error handling and user feedback
-- ✅ Deep linking support for zaptrax.app URLs
+- ✅ Deep linking support for musik.app URLs
 - ✅ HTTPS security with network security configuration
 - ✅ ProGuard optimization for release builds
 - ✅ External link handling (opens in browser)
@@ -387,7 +387,7 @@ org.gradle.jvmargs=-Xmx4096m -XX:MaxPermSize=1024m
 
 ## License
 
-This WebView wrapper is for the Zaptrax application. Ensure you have rights to wrap the website in a mobile app.
+This WebView wrapper is for the 5DTOK Musik application. Ensure you have rights to wrap the website in a mobile app.
 
 ## Version History
 

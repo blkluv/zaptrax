@@ -1,4 +1,4 @@
-package app.zaptrax;
+package  app.musik;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -299,7 +299,7 @@ public class MediaSessionManager {
 
     private NotificationCompat.Action createAction(int icon, String title, String action) {
         Intent intent = new Intent(context, MediaButtonReceiver.class);
-        intent.setAction("app.zaptrax.action." + action.toUpperCase());
+        intent.setAction(" app.musik.action." + action.toUpperCase());
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
             context,

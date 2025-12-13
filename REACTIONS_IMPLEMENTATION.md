@@ -2,7 +2,7 @@
 
 ## Overview
 
-The reactions/likes system in ZapTrax has been updated to properly follow Nostr protocol standards as defined in NIP-25 (Reactions) and NIP-09 (Event Deletion Request).
+The reactions/likes system in 5DTOK Musik has been updated to properly follow Nostr protocol standards as defined in NIP-25 (Reactions) and NIP-09 (Event Deletion Request).
 
 ## Previous Implementation Issues
 

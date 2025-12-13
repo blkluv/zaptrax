@@ -1,4 +1,4 @@
-package app.zaptrax;
+package  app.musik;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,10 +11,10 @@ import android.util.Log;
 public class MediaButtonReceiver extends BroadcastReceiver {
     private static final String TAG = "MediaButtonReceiver";
 
-    public static final String ACTION_PLAY = "app.zaptrax.action.PLAY";
-    public static final String ACTION_PAUSE = "app.zaptrax.action.PAUSE";
-    public static final String ACTION_NEXT = "app.zaptrax.action.NEXT";
-    public static final String ACTION_PREVIOUS = "app.zaptrax.action.PREVIOUS";
+    public static final String ACTION_PLAY = " app.musik.action.PLAY";
+    public static final String ACTION_PAUSE = " app.musik.action.PAUSE";
+    public static final String ACTION_NEXT = " app.musik.action.NEXT";
+    public static final String ACTION_PREVIOUS = " app.musik.action.PREVIOUS";
 
     @Override
     public void onReceive(Context context, Intent intent) {

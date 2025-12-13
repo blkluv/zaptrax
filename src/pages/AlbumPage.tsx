@@ -49,16 +49,16 @@ export function AlbumPage() {
 
   // Dynamic meta tags for social media
   useSeoMeta({
-    title: album ? `${album.title} - ${album.artist} | ZapTrax` : 'ZapTrax - Music Streaming',
-    description: album ? `Listen to "${album.title}" by ${album.artist} on ZapTrax. Stream this album and discover more music on the Lightning Network.` : 'Stream music on ZapTrax',
-    ogTitle: album ? `${album.title} - ${album.artist}` : 'ZapTrax',
-    ogDescription: album ? `Listen to "${album.title}" by ${album.artist} on ZapTrax` : 'Stream music on ZapTrax',
+    title: album ? `${album.title} - ${album.artist} | 5DTOK Musik` : '5DTOK Musik - Music Streaming',
+    description: album ? `Listen to "${album.title}" by ${album.artist} on 5DTOK Musik. Stream this album and discover more music on the Lightning Network.` : 'Stream music on 5DTOK Musik',
+    ogTitle: album ? `${album.title} - ${album.artist}` : '5DTOK Musik',
+    ogDescription: album ? `Listen to "${album.title}" by ${album.artist} on 5DTOK Musik` : 'Stream music on 5DTOK Musik',
     ogImage: album?.albumArtUrl || `${window.location.origin}/zaptrax.png`,
     ogUrl: window.location.href,
     ogType: 'music.album',
     twitterCard: 'summary_large_image',
-    twitterTitle: album ? `${album.title} - ${album.artist}` : 'ZapTrax',
-    twitterDescription: album ? `Listen to "${album.title}" by ${album.artist} on ZapTrax` : 'Stream music on ZapTrax',
+    twitterTitle: album ? `${album.title} - ${album.artist}` : '5DTOK Musik',
+    twitterDescription: album ? `Listen to "${album.title}" by ${album.artist} on 5DTOK Musik` : 'Stream music on 5DTOK Musik',
     twitterImage: album?.albumArtUrl || `${window.location.origin}/zaptrax.png`,
   });
 
@@ -203,7 +203,7 @@ export function AlbumPage() {
     const url = window.location.href;
     const shareData = {
       title: `${album?.artist} - ${album?.title}`,
-      text: `Check out this album on ZapTrax`,
+      text: `Check out this album on 5DTOK Musik`,
       url: url,
     };
 

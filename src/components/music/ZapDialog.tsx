@@ -41,7 +41,7 @@ const WAVLAKE_APP_ID = 'DR25'; // Wavlake app ID
 
 export function ZapDialog({ open, onOpenChange, track, rssValueBlock: passedRssValueBlock }: ZapDialogProps) {
   const [amount, setAmount] = useState('1000');
-  const [comment, setComment] = useState('Zapped from ZapTrax!');
+  const [comment, setComment] = useState('Zapped from 5DTOK Musik!');
   const [isLoading, setIsLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'webln' | 'external'>('webln');
   const [fetchedRssValueBlock, setFetchedRssValueBlock] = useState<ValueBlock | null>(null);
@@ -336,7 +336,7 @@ export function ZapDialog({ open, onOpenChange, track, rssValueBlock: passedRssV
 
   const handleClose = () => {
     setAmount('1000');
-    setComment('Zapped from ZapTrax!');
+    setComment('Zapped from 5DTOK Musik!');
     onOpenChange(false);
   };
 

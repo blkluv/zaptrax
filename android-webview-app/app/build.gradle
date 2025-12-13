@@ -10,11 +10,11 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace 'app.zaptrax'
+    namespace ' app.musik'
     compileSdk 34
 
     defaultConfig {
-        applicationId "app.zaptrax"
+        applicationId " app.musik"
         minSdk 24
         targetSdk 34
         versionCode 7

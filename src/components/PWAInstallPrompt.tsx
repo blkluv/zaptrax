@@ -93,8 +93,8 @@ export function PWAInstallPrompt() {
         <CardContent className="p-4">
           <div className="flex items-start justify-between mb-3">
             <div className="flex items-center space-x-2">
-              <img src="/zaptrax.png" alt="ZapTrax" className="h-6 w-6" />
-              <h3 className="font-semibold text-sm">Install ZapTrax</h3>
+              <img src="/zaptrax.png" alt="5DTOK Musik" className="h-6 w-6" />
+              <h3 className="font-semibold text-sm">Install 5DTOK Musik</h3>
             </div>
             <Button
               variant="ghost"
@@ -107,7 +107,7 @@ export function PWAInstallPrompt() {
           </div>
 
           <p className="text-xs text-muted-foreground mb-3">
-            Install ZapTrax for a better experience with offline access and native app features.
+            Install 5DTOK Musik for a better experience with offline access and native app features.
           </p>
 
           <div className="flex space-x-2">

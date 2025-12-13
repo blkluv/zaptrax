@@ -21,7 +21,7 @@ export function Header() {
           <div className="p-2 bg-purple-600 rounded-md">
             <Music className="h-6 w-6 text-white" />
           </div>
-          <span className="inline-block font-bold text-lg text-white">ZapTrax</span>
+          <span className="inline-block font-bold text-lg text-white">5DTOK MUSIK</span>
         </Link>
 
         {/* Right Side */}

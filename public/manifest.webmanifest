@@ -1,6 +1,6 @@
 {
-  "name": "ZapTrax - Nostr Music Player",
-  "short_name": "ZapTrax",
+  "name": "5DTOK Musik - Nostr Music Player",
+  "short_name": "5DTOK Musik",
   "description": "Discover and stream music on Nostr with Wavlake integration. Create playlists, like tracks, and support artists with Lightning zaps.",
   "start_url": "/",
   "display": "standalone",

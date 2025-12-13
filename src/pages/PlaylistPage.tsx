@@ -268,7 +268,7 @@ export function PlaylistPage() {
     const url = window.location.href;
     const shareData = {
       title: getPlaylistInfo().title,
-      text: `Check out this playlist on ZapTrax`,
+      text: `Check out this playlist on 5DTOK Musik`,
       url: url,
     };
 

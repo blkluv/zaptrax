@@ -152,7 +152,7 @@ export class PodcastIndexAPI {
       'X-Auth-Date': apiHeaderTime.toString(),
       'X-Auth-Key': this.apiKey,
       'Authorization': hash4Header,
-      'User-Agent': 'Zaptrax',
+      'User-Agent': '5DTOK Musik',
     };
   }
 

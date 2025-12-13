@@ -37,7 +37,7 @@
 -renamesourcefileattribute SourceFile
 
 # Keep MainActivity
--keep class app.zaptrax.MainActivity { *; }
+-keep class  app.musik.MainActivity { *; }
 
 # AndroidX
 -keep class androidx.** { *; }

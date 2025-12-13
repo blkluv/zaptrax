@@ -6,9 +6,9 @@
         </trust-anchors>
     </base-config>
 
-    <!-- Allow HTTPS connections to zaptrax.app -->
+    <!-- Allow HTTPS connections to musik.app -->
     <domain-config cleartextTrafficPermitted="false">
-        <domain includeSubdomains="true">zaptrax.app</domain>
+        <domain includeSubdomains="true">musik.app</domain>
         <trust-anchors>
             <certificates src="system" />
         </trust-anchors>

@@ -38,7 +38,7 @@ if ('serviceWorker' in navigator) {
                 updatePromptShown = true; // Only show once
                 // New version available, notify user
                 const currentVersion = __APP_VERSION__;
-                if (confirm(`A new version of ZapTrax (v${currentVersion}) is available. Refresh to update?`)) {
+                if (confirm(`A new version of 5DTOK Musik (v${currentVersion}) is available. Refresh to update?`)) {
                   newWorker.postMessage({ action: 'skipWaiting' });
                   window.location.reload();
                 }

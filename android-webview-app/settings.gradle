@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Zaptrax"
+rootProject.name = "5DTOK Musik"
 include ':app'

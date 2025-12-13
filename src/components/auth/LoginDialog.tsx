@@ -45,7 +45,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose, onLogin, onS
   const generateConnectSession = useCallback(() => {
     const relayUrl = login.getRelayUrl();
     const params = generateNostrConnectParams([relayUrl]);
-    const uri = generateNostrConnectURI(params, 'Zaptrax');
+    const uri = generateNostrConnectURI(params, '5DTOK Musik');
     setNostrConnectParams(params);
     setNostrConnectUri(uri);
     setConnectError(null);

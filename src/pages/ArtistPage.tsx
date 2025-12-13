@@ -101,7 +101,7 @@ export function ArtistPage() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4">{artist.name}</h1>
             <p className="text-sm md:text-lg text-gray-300 mb-4 md:mb-6 max-w-2xl line-clamp-2 md:line-clamp-none">
-              {artist.bio || nostrProfile?.about || 'Artist on ZapTrax'}
+              {artist.bio || nostrProfile?.about || 'Artist on 5DTOK Musik'}
             </p>
 
             {/* Action Buttons */}
