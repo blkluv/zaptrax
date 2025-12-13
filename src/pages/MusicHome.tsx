@@ -19,7 +19,7 @@ import { nip19 } from 'nostr-tools';
 import { useQueries } from '@tanstack/react-query';
 
 const categories = [
-  'All', 'Rock', 'Pop', 'Hip Hop', 'Electronic', 'Jazz', 'Classical', 'Folk', 'Blues', 'Country', 'Reggae'
+  'All', 'Hip Hop', 'Reggae', 'Jazz', 'Blues','Classical', 'Folk', 'Country', 'Reggae','Rock', 'Pop', 'Electronic',
 ];
 
 const timePeriods = [
