@@ -110,7 +110,7 @@ export function PodcastIndexFeedPage() {
             <Button
               variant="ghost"
               size="sm"
-              className="mb-4 text-gray-400 hover:text-white hover:bg-gray-800/50"
+              className={cn("mb-4 text-gray-400 hover:text-white hover:bg-gray-800/50")}
               onClick={() => navigate(-1)}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -129,7 +129,7 @@ export function PodcastIndexFeedPage() {
             <div className="flex gap-4">
               <Button
                 size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8"
+                className={cn("bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8")}
                 onClick={handlePlayAll}
               >
                 <Play className="h-5 w-5 mr-2 fill-current" />
@@ -151,10 +151,13 @@ export function PodcastIndexFeedPage() {
             const minutes = Math.floor(duration / 60);
             const seconds = duration % 60;
 
+            // Use the unifiedTrack variable to prevent "unused variable" error
+            const episodeTitle = unifiedTrack?.title || episode.title;
+
             return (
               <Card
                 key={episode.id}
-                className="bg-gray-900 border-gray-800 hover:bg-gray-800 transition-colors cursor-pointer group"
+                className={cn("bg-gray-900 border-gray-800 hover:bg-gray-800 transition-colors cursor-pointer group")}
               >
                 <CardContent className="p-4">
                   <div className="flex items-center gap-4">
@@ -163,7 +166,7 @@ export function PodcastIndexFeedPage() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="h-10 w-10 rounded-full bg-gray-800 group-hover:bg-purple-600 transition-colors"
+                        className={cn("h-10 w-10 rounded-full bg-gray-800 group-hover:bg-purple-600 transition-colors")}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleTrackPlay(index);
@@ -178,7 +181,7 @@ export function PodcastIndexFeedPage() {
                       <div className="flex-shrink-0">
                         <img
                           src={episode.image}
-                          alt={episode.title}
+                          alt={episodeTitle}
                           className="w-12 h-12 rounded object-cover"
                         />
                       </div>
@@ -187,10 +190,10 @@ export function PodcastIndexFeedPage() {
                     {/* Episode Info */}
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-white truncate">
-                        {episode.title}
+                        {episodeTitle}
                       </h3>
                       <p className="text-sm text-gray-400 line-clamp-1">
-                        {episode.description || 'No description'}
+                        {unifiedTrack?.description || episode.description || 'No description'}
                       </p>
                       {episode.datePublishedPretty && (
                         <p className="text-xs text-gray-500 mt-1">

@@ -12,14 +12,14 @@ import { useListeningHistory } from '@/hooks/useListeningHistory';
 import type { WavlakeTrack } from '@/lib/wavlake';
 import { wavlakeAPI } from '@/lib/wavlake';
 import { podcastIndexAPI } from '@/lib/podcastindex';
-import { wavlakeToUnified, podcastIndexTop100ToUnified, podcastIndexEpisodeToUnified } from '@/lib/unifiedTrack';
+import { wavlakeToUnified, podcastIndexEpisodeToUnified } from '@/lib/unifiedTrack';
 import type { NostrEvent } from '@nostrify/nostrify';
 import { cn } from '@/lib/utils';
 import { nip19 } from 'nostr-tools';
 import { useQueries } from '@tanstack/react-query';
 
 const categories = [
-  'All', 'Hip Hop', 'Reggae', 'Jazz', 'Blues','Classical', 'Folk', 'Country', 'Reggae','Rock', 'Pop', 'Electronic',
+  'All', 'Jersey Club', 'Baltimore Club', 'Philly Club', 'Footwork/Juke', 'Hip Hop', 'R&B', 'Reggae', 'Dancehall', 'Afrobeats', 'Amapiano', 'UK Drill', 'Trap', 'House', 'Tech House', 'Dubstep', 'Drum & Bass', 'Hyperpop', 'Lo-Fi'
 ];
 
 const timePeriods = [
@@ -104,11 +104,14 @@ export function MusicHome() {
   }, [podcastIndexTop100, isPodcastIndexLoading, podcastIndexError]);
 
 
-  const handleTrackPlay = (track: WavlakeTrack) => {
-    if (topTracks) {
-      playTrack(track, topTracks);
-    }
-  };
+const handleTrackPlay = (track: WavlakeTrack) => {
+  if (topTracks) {
+    // Convert to unified track format
+    const unifiedTrack = wavlakeToUnified(track);
+    const unifiedTracks = topTracks.map(wavlakeToUnified);
+    playTrack(unifiedTrack, unifiedTracks);
+  }
+};
 
   const handleLibraryMore = () => {
     navigate('/playlists');

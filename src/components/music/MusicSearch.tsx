@@ -14,7 +14,7 @@ import { useAuthor } from '@/hooks/useAuthor';
 import { useMusicPlayer } from '@/contexts/MusicPlayerContext';
 import { wavlakeAPI } from '@/lib/wavlake';
 import { podcastIndexAPI } from '@/lib/podcastindex';
-import { wavlakeToUnified, podcastIndexEpisodeToUnified } from '@/lib/unifiedTrack';
+import { wavlakeToUnified } from '@/lib/unifiedTrack'; // Only import what's used
 import { useDebounce } from '@/hooks/useDebounce';
 import { createNpub, isNpub, isNip05 } from '@/lib/nostrSearch';
 import { genUserName } from '@/lib/genUserName';
@@ -100,55 +100,22 @@ export function MusicSearch({
         artist: fullTrack.artist
       });
 
-      // Normalize the track data to ensure it has all required properties
-      const normalizedTrack: WavlakeTrack = {
-        id: fullTrack.id,
-        title: fullTrack.title || (fullTrack as ExtendedWavlakeTrack).name || result.name,
-        albumTitle: fullTrack.albumTitle || result.albumTitle || '',
-        artist: fullTrack.artist || result.artist || '',
-        artistId: fullTrack.artistId || result.artistId || '',
-        albumId: fullTrack.albumId || result.albumId || '',
-        artistArtUrl: fullTrack.artistArtUrl || result.artistArtUrl || '',
-        albumArtUrl: fullTrack.albumArtUrl || result.albumArtUrl || '',
-        mediaUrl: fullTrack.mediaUrl || '',
-        duration: fullTrack.duration || result.duration || 0,
-        releaseDate: fullTrack.releaseDate || '',
-        msatTotal: fullTrack.msatTotal || '',
-        artistNpub: fullTrack.artistNpub || '',
-        order: fullTrack.order || 0,
-        url: (fullTrack as ExtendedWavlakeTrack).url || (result as ExtendedWavlakeSearchResult).url || `https://wavlake.com/track/${fullTrack.id}`
-      };
-
-      console.log('MusicSearch - Normalized track:', normalizedTrack);
+      // Convert to unified format using wavlakeToUnified
+      const unifiedTrack = wavlakeToUnified(fullTrack);
+      console.log('MusicSearch - Unified track:', unifiedTrack);
 
       // Get all track results to create a queue for navigation
       const trackResults = groupedResults.tracks;
       const trackQueue = await Promise.all(
         trackResults.map(async (trackResult) => {
           if (trackResult.id === result.id) {
-            return normalizedTrack; // Use the normalized track
+            return unifiedTrack; // Use the unified track we already have
           }
           try {
             const trackData = await wavlakeAPI.getTrack(trackResult.id);
             const track = Array.isArray(trackData) ? trackData[0] : trackData;
-            // Normalize each track in the queue as well
-            return {
-              id: track.id,
-              title: track.title || (track as ExtendedWavlakeTrack).name || trackResult.name,
-              albumTitle: track.albumTitle || trackResult.albumTitle || '',
-              artist: track.artist || trackResult.artist || '',
-              artistId: track.artistId || trackResult.artistId || '',
-              albumId: track.albumId || trackResult.albumId || '',
-              artistArtUrl: track.artistArtUrl || trackResult.artistArtUrl || '',
-              albumArtUrl: track.albumArtUrl || trackResult.albumArtUrl || '',
-              mediaUrl: track.mediaUrl || '',
-              duration: track.duration || trackResult.duration || 0,
-              releaseDate: track.releaseDate || '',
-              msatTotal: track.msatTotal || '',
-              artistNpub: track.artistNpub || '',
-              order: track.order || 0,
-              url: (track as ExtendedWavlakeTrack).url || (trackResult as ExtendedWavlakeSearchResult).url || `https://wavlake.com/track/${track.id}`
-            } as WavlakeTrack;
+            // Convert to unified format
+            return wavlakeToUnified(track);
           } catch (e) {
             console.error('Failed to fetch track:', trackResult.id, e);
             return null;
@@ -157,9 +124,9 @@ export function MusicSearch({
       );
 
       // Filter out any failed fetches and play with queue
-      const validTracks = trackQueue.filter(track => track !== null) as WavlakeTrack[];
+      const validTracks = trackQueue.filter(track => track !== null);
       console.log('MusicSearch - Queue created with', validTracks.length, 'tracks');
-      playTrack(normalizedTrack, validTracks);
+      playTrack(unifiedTrack, validTracks);
     } catch (e) {
       console.error('Failed to fetch full track details:', e);
       dispatch({ type: 'SET_ERROR', payload: 'Failed to load track details.' });
@@ -204,6 +171,30 @@ export function MusicSearch({
       }
     }
     onUserSelect?.(result);
+  };
+
+  const handlePodcastIndexTrackPlay = async (feedId: number) => {
+    try {
+      // Fetch both the feed details and episodes
+      const [feedResponse, episodesData] = await Promise.all([
+        podcastIndexAPI.getFeedById(feedId),
+        podcastIndexAPI.getFeedEpisodes(feedId),
+      ]);
+
+      if (episodesData.items.length === 0) {
+        console.error('No episodes found for feed');
+        return;
+      }
+
+      // Convert all episodes to unified tracks, passing feed info for author
+      const allTracks = episodesData.items.map(ep => wavlakeToUnified(ep, feedResponse.feed));
+      const trackToPlay = allTracks[0]; // Play first episode
+
+      // Play the track
+      playTrack(trackToPlay, allTracks);
+    } catch (error) {
+      console.error('Failed to play PodcastIndex track:', error);
+    }
   };
 
   // Component for displaying user search results
@@ -336,11 +327,15 @@ export function MusicSearch({
             {podcastIndexResults.feeds.map((feed: PodcastIndexFeed) => (
               <div
                 key={feed.id}
-                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800"
+                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800 cursor-pointer"
+                onClick={() => handlePodcastIndexTrackPlay(feed.id)}
               >
                 <Avatar
                   className="h-12 w-12 rounded-md cursor-pointer"
-                  onClick={() => navigate(`/feed/${feed.id}`)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/feed/${feed.id}`);
+                  }}
                 >
                   <AvatarImage src={feed.image || feed.artwork} alt={feed.title} />
                   <AvatarFallback className="rounded-md">
@@ -351,13 +346,19 @@ export function MusicSearch({
                 <div className="flex-1 min-w-0">
                   <h4
                     className="font-medium text-sm truncate cursor-pointer hover:underline"
-                    onClick={() => navigate(`/feed/${feed.id}`)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/feed/${feed.id}`);
+                    }}
                   >
                     {feed.title}
                   </h4>
                   <p
                     className="text-sm text-muted-foreground truncate cursor-pointer hover:text-purple-400 transition-colors"
-                    onClick={() => navigate(`/feed/${feed.id}`)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/feed/${feed.id}`);
+                    }}
                   >
                     {feed.author}
                   </p>
@@ -366,7 +367,7 @@ export function MusicSearch({
                   </p>
                 </div>
 
-                <Badge variant="outline">
+                <Badge variant="outline" className="cursor-pointer" onClick={(e) => e.stopPropagation()}>
                   <Radio className="h-3 w-3 mr-1" />
                   Music
                 </Badge>
@@ -511,4 +512,3 @@ export function MusicSearch({
     </div>
   );
 }
-

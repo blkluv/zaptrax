@@ -45,18 +45,26 @@ export function TopTracks({
     { value: '90', label: 'Last 3 months' },
   ];
 
-  const genreOptions = [
+const genreOptions = [
     { value: 'all', label: 'All genres' },
-    { value: 'rock', label: 'Rock' },
-    { value: 'pop', label: 'Pop' },
+    { value: 'jersey-club', label: 'Jersey Club' },
+    { value: 'baltimore-club', label: 'Baltimore Club' },
+    { value: 'philly-club', label: 'Philly Club' },
+    { value: 'footwork', label: 'Footwork/Juke' },
     { value: 'hip-hop', label: 'Hip Hop' },
-    { value: 'electronic', label: 'Electronic' },
-    { value: 'jazz', label: 'Jazz' },
-    { value: 'classical', label: 'Classical' },
-    { value: 'country', label: 'Country' },
-    { value: 'folk', label: 'Folk' },
-    { value: 'blues', label: 'Blues' },
+    { value: 'r-n-b', label: 'R&B' },
     { value: 'reggae', label: 'Reggae' },
+    { value: 'dancehall', label: 'Dancehall' },
+    { value: 'afrobeats', label: 'Afrobeats' },
+    { value: 'amapiano', label: 'Amapiano' },
+    { value: 'uk-drill', label: 'UK Drill' },
+    { value: 'trap', label: 'Trap' },
+    { value: 'house', label: 'House' },
+    { value: 'tech-house', label: 'Tech House' },
+    { value: 'dubstep', label: 'Dubstep' },
+    { value: 'drum-bass', label: 'Drum & Bass' },
+    { value: 'hyperpop', label: 'Hyperpop' },
+    { value: 'lo-fi', label: 'Lo-Fi' },
   ];
 
   if (error) {
